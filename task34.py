@@ -9,3 +9,40 @@
 # все не в порядке.
 # Ввод: пара-ра-рам рам-пам-папам па-ра-па-да
 # Вывод: Парам пам-пам
+def vowels_cnt(lst_1: list):
+    """
+    Подсчёт количества гласных
+
+    Args:
+        lst_1 (list): Любая коллекция
+
+    Returns:
+        type: (int): Количество гласных
+    """
+    lst_vowels = ['а', 'я', 'о', 'ё', 'у', 'ю', 'э', 'е', 'ы', 'и']
+    return len(list(filter(lambda x: x in lst_vowels, lst_1)))
+
+
+def compare_phrases(str_1: str):
+    """
+    Сравнение слов в строке на количество гласных
+
+    Args:
+        str_1 (str): Любая строка
+
+    Returns:
+        type: (str): "Парам пам-пам" - True. "Пам парам" - False
+    """
+    lst_1 = str_1.split()
+    if len(lst_1) <= 1:
+        return "Пам парам"
+    else:
+        set_1 = set(map(lambda x: vowels_cnt(x), lst_1))
+        if len(set_1) == 1:
+            return "Парам пам-пам"
+        return "Пам парам"
+
+
+print("Введите стихотворение: ", end="")
+input_poem = input()
+print(compare_phrases(input_poem))
